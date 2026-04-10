@@ -1,4 +1,4 @@
-const { sendResponse, handleError, validateFields, validateFormat  } = require('../utils/helper');
+const { sendResponse, handleError, validatePersonData } = require('../utils/helper');
 
 const professionalRepository = require('../repository/professional.repository');
 
@@ -67,14 +67,7 @@ async function deactivateProfessional(req, res) {
 }
 
 function validateProfessionalData(professionalData) {
-    const validation = validateFields(["name", "email", "phone"], professionalData);
-	if (!validation.valid) return validation;
-
-	return validateFormat({
-		name: { value: professionalData.name, type: "letters" },
-		email: { value: professionalData.email, type: "email" },
-		phone: { value: professionalData.phone, type: "phone" },
-	});
+	return validatePersonData(professionalData);
 }
 
 module.exports = {

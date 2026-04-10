@@ -105,6 +105,17 @@ function handleMysqlError(error) {
 	}
 }
 
+function validatePersonData(data) {
+	const validation = validateFields(["name", "email", "phone"], data);
+	if (!validation.valid) return validation;
+
+	return validateFormat({
+		name: { value: data.name, type: "letters" },
+		email: { value: data.email, type: "email" },
+		phone: { value: data.phone, type: "phone" },
+	});
+}
+
 function validateFormat(fields = {}) {
 	const invalidFields = [];
 
@@ -130,5 +141,6 @@ module.exports = {
 	getLocalIpAddress,
 	validateFields,
 	validateFormat,
+	validatePersonData,
 	handleMysqlError,
 };

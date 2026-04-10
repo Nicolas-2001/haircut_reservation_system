@@ -1,4 +1,4 @@
-const { sendResponse, handleError, validateFields, validateFormat } = require("../utils/helper");
+const { sendResponse, handleError, validatePersonData } = require("../utils/helper");
 const clientRepository = require("../repository/client.repository");
 
 async function getAllClients(req, res) {
@@ -64,14 +64,7 @@ async function deactivateClient(req, res) {
 }
 
 function validateClientData(clientData) {
-	const validation = validateFields(["name", "email", "phone"], clientData);
-	if (!validation.valid) return validation;
-
-	return validateFormat({
-		name: { value: clientData.name, type: "letters" },
-		email: { value: clientData.email, type: "email" },
-		phone: { value: clientData.phone, type: "phone" },
-	});
+	return validatePersonData(clientData);
 }
 
 module.exports = {
