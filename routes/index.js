@@ -1,10 +1,12 @@
-const Router = require("express").Router();
+const express = require("express");
 const clientRoutes = require("./client.routes");
 const professionalRoutes = require("./professional.routes");
 const serviceRoutes = require("./service.routes");
 
-Router.use("/clients", clientRoutes);
-Router.use("/professionals", professionalRoutes);
-Router.use("/services", serviceRoutes);
+const router = express.Router();
 
-module.exports = Router;
+router.use("/clients", clientRoutes);
+router.use("/professionals", professionalRoutes);
+router.use("/services", serviceRoutes);
+
+module.exports = router;
