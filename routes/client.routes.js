@@ -1,5 +1,4 @@
-const Router = require("express");
-const { sendResponse } = require("../utils/helper");
+const { Router } = require("express");
 const { getAllClients, getClientById, createClient, updateClient, deactivateClient } = require("../controllers/client.controller");
 
 const router = Router();
