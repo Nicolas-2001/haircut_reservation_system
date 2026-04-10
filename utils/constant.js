@@ -1,5 +1,6 @@
 const patterns = {
 	letters: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+	alphanumeric: /^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ\s]+$/,
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 	phone: /^\d{10}$/,
 	integer: /^\d+$/,

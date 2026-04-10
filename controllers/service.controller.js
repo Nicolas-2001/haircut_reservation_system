@@ -69,7 +69,7 @@ function validateServiceData(serviceData) {
 
 	return validateFormat({
 		name: { value: serviceData.name, type: "letters" },
-		description: { value: serviceData.description, type: "letters" },
+		description: { value: serviceData.description, type: "alphanumeric" },
 		duration_minutes: { value: String(serviceData.duration_minutes), type: "integer" },
 		price: { value: String(serviceData.price), type: "decimal" },
 	});
