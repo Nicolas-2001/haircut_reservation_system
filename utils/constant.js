@@ -2,6 +2,8 @@ const patterns = {
 	letters: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 	phone: /^\d{10}$/,
+	integer: /^\d+$/,
+	decimal: /^\d{1,8}(\.\d{1,2})?$/,
 };
 
 const mysqlPatterns = {
