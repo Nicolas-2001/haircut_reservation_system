@@ -1,5 +1,4 @@
-const { sendResponse, handleError, validatePersonData } = require('../utils/helper');
-
+const { sendResponse, handleError, validatePersonData, validateFields, validateFormat } = require('../utils/helper');
 const professionalRepository = require('../repository/professional.repository');
 
 async function getAllProfessionals(req, res) {
@@ -17,8 +16,7 @@ async function getProfessionalById(req, res) {
         const professional = await professionalRepository.getById(id);
         if (professional) {
             sendResponse(res, 200, 'Professional retrieved successfully', professional);
-        }
-        else {
+        } else {
             sendResponse(res, 404, 'Professional not found');
         }
     } catch (error) {
@@ -60,9 +58,29 @@ async function deactivateProfessional(req, res) {
     try {
         const result = await professionalRepository.deactivate(id);
         sendResponse(res, 200, 'Professional deactivated successfully', result);
-    }
-    catch (error) {
+    } catch (error) {
         handleError(res, error, 'Error deactivating professional');
+    }
+}
+
+async function assignService(req, res) {
+    const { id } = req.params;
+    const { service_id } = req.body;
+
+    const validation = validateFields(["service_id"], req.body);
+    if (!validation.valid) return sendResponse(res, 400, validation.message);
+
+    const formatValidation = validateFormat({
+        id: { value: id, type: "integer" },
+        service_id: { value: service_id, type: "integer" },
+    });
+    if (!formatValidation.valid) return sendResponse(res, 400, formatValidation.message);
+
+    try {
+        await professionalRepository.assignService(id, service_id);
+        sendResponse(res, 200, 'Service assigned successfully');
+    } catch (error) {
+        handleError(res, error, 'Error assigning service');
     }
 }
 
@@ -75,5 +93,6 @@ module.exports = {
     getProfessionalById,
     createProfessional,
     updateProfessional,
-    deactivateProfessional
+    deactivateProfessional,
+    assignService,
 }
