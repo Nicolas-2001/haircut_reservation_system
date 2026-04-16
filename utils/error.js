@@ -63,6 +63,22 @@ class DatabaseError extends Error {
 	}
 }
 
+class ReservationAlreadyExistsError extends Error {
+	constructor(message = "The time slot is not available.") {
+		super(message);
+		this.name = "ReservationAlreadyExistsError";
+		this.statusCode = 409;
+	}
+}
+
+class NotFoundError extends Error {
+	constructor(message = "Not Found") {
+		super(message);
+		this.name = "NotFoundError";
+		this.statusCode = 404;
+	}
+}
+
 module.exports = {
 	DuplicateEntryError,
 	NullFieldError,
@@ -72,4 +88,6 @@ module.exports = {
 	ForeignKeyNotFoundError,
 	ReferencedRowError,
 	DatabaseError,
+	ReservationAlreadyExistsError,
+	NotFoundError,
 };

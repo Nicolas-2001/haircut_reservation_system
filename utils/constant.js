@@ -5,21 +5,18 @@ const patterns = {
 	phone: /^\d{10}$/,
 	integer: /^\d+$/,
 	decimal: /^\d{1,8}(\.\d{1,2})?$/,
+	date: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
+	time: /^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/,
 };
 
 const mysqlPatterns = {
 	duplicateEntryKey: /for key '(?:[^.]+\.)?([^']+)'/i,
 	duplicateEntryValue: /Duplicate entry '([^']+)'/i,
-
 	columnName: /column '([^']+)'/i,
-
 	foreignKeyConstraint: /CONSTRAINT `([^`]+)`/i,
-
 	tableName: /Table '([^']+)'/i,
-
 	cannotBeNull: /Column '([^']+)' cannot be null/i,
 	dataTooLong: /Data too long for column '([^']+)'/i,
-
 	unknownColumn: /Unknown column '([^']+)'/i,
 };
 
