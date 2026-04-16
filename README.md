@@ -111,7 +111,7 @@ Para resolver esto, la creación de citas usa una transacción MySQL con un bloq
 
 1. Se abre una transacción en una conexión dedicada.
 2. Antes de insertar, se ejecuta un `SELECT ... FOR UPDATE` que busca citas existentes que se solapan con el horario solicitado para el mismo profesional — excluyendo las canceladas.
-3. La cláusula `FOR UPDATE` bloquea las filas coincidentes (o el gap en el índice si no hay filas), impidiendo que cualquier otra transacción inserte una cita conflictiva hasta que la actual haga commit o rollback.
+3. La cláusula `FOR UPDATE` bloquea las filas coincidentes, impidiendo que dos reservaciones ocupen el mismo espacio de tiempo y evitando así choques de horario entre citas.
 4. Si hay conflicto, la transacción se revierte y se retorna un `409 Conflict`.
 5. Si no hay conflicto, la cita se inserta y se confirma de forma atómica.
 
