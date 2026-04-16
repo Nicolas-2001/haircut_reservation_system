@@ -164,7 +164,7 @@ CREATE TABLE `days_of_week` (
 
 LOCK TABLES `days_of_week` WRITE;
 /*!40000 ALTER TABLE `days_of_week` DISABLE KEYS */;
-INSERT INTO `days_of_week` VALUES (2,'Lunes'),(3,'Martes'),(4,'Miercoles'),(5,'Jueves'),(6,'Viernes'),(7,'Sabado'),(0,'Domingo');
+INSERT INTO `days_of_week` VALUES (2,'Lunes'),(3,'Martes'),(4,'Miercoles'),(5,'Jueves'),(6,'Viernes'),(7,'Sabado'),(1,'Domingo');
 /*!40000 ALTER TABLE `days_of_week` ENABLE KEYS */;
 UNLOCK TABLES;
 
